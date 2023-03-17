@@ -12,7 +12,7 @@
 }
 else
 {
-  <ul class="machine-list">
+  <ul class="capsule-list machine-list">
   @foreach (Machine machine in Model)
   {
     <li>@Html.ActionLink($"{machine.Manufacturer} {machine.Model}", "Details", new { id = machine.MachineId })</li>
