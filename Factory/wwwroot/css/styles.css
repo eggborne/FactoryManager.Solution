@@ -101,13 +101,17 @@ form > .form-row, .info-row {
 	justify-content: space-between;
 	padding: 1.5rem;
   gap: 1rem;
-  background-color: #ffffff11;
-  margin: 1rem;
+  background-color: #00000024;
+  /* margin: 1rem; */
   min-width: max-content;
 }
 
-form > .form-row:nth-child(odd) {
-  background-color: #ffffff22;
+.form-row:last-of-type {
+	margin-bottom: 1rem;
+}
+
+.form-row.text-area > input {
+	height: 4rem;
 }
 
 .form-text-input-area > span:first-of-type {
@@ -189,13 +193,15 @@ button:active {
 .info-row {
 	font-style: normal;
 	padding: 0;
-	background-color: #0000000e;
   gap: 1rem;
   margin: 0rem;
 	padding: 1rem;
 }
 
-.info-row:nth-child(odd) {
+.info-row:nth-child(even), form > .form-row:nth-child(even) {
+	background-color: #0000000e;
+}
+.info-row:nth-child(odd), form > .form-row:nth-child(odd) {
 	background-color: #00000024;
 }
 

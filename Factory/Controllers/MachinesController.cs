@@ -43,11 +43,21 @@ namespace Factory.Controllers
       return View(thisMachine);
     }
 
-    public ActionResult AddMachine(int id)
+    public ActionResult Edit(int id)
     {
-      Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name", "Name");
+      Machine thisMachine = _db.Machines
+            .Include(machine => machine.JoinEntities)
+            .ThenInclude(join => join.Engineer)
+            .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Machine machine)
+    {
+      _db.Machines.Update(machine);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }

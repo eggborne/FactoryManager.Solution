@@ -1,3 +1,34 @@
 @{
   Layout = "_Layout";
+}@{
+  Layout = "_Layout";
 }
+
+@model Factory.Models.Machine
+
+<h2>Editing <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+
+  <div class="form-row">
+      @Html.LabelFor(model => model.Manufacturer)
+      @Html.EditorFor(model => model.Manufacturer)
+  </div>
+  <div class="form-row">
+      @Html.LabelFor(model => model.Model)
+      @Html.EditorFor(model => model.Model)
+  </div>
+  <div class="form-row text-area">
+    @Html.LabelFor(model => model.Description)
+    @Html.EditorFor(model => model.Description)
+  </div>
+  <button class="green" type="submit">Save</button>
+}
+
+<div class="button-area">
+  <a href='@Url.Action("Details", "Machines", new { id = Model.MachineId })'>
+    <button>Cancel</button>
+  </a>
+</div>
