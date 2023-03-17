@@ -1,3 +1,31 @@
 @{
   Layout = "_Layout";
 }
+
+@model Factory.Models.Machine
+@using Factory.Models
+
+<h2>Create a new Machine</h2>
+
+@using (Html.BeginForm())
+{
+  <div class="form-row">
+    @Html.LabelFor(model => model.Manufacturer)
+    @Html.TextBoxFor(model => model.Manufacturer)
+  </div>
+  <div class="form-row">
+    @Html.LabelFor(model => model.Model)
+    @Html.TextBoxFor(model => model.Model)
+  </div>
+  <div class="form-row">
+    @Html.LabelFor(model => model.Description)
+    @Html.TextAreaFor(model => model.Description)
+  </div>
+  <button class="green" type="submit">Save</button>
+}
+
+<div class="button-area">
+  <a href='@Url.Action("Index")'>
+    <button>Cancel</button>
+  </a>
+</div>

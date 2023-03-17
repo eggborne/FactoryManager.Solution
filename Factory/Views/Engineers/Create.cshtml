@@ -1,3 +1,35 @@
 @{
   Layout = "_Layout";
 }
+
+@model Factory.Models.Engineer
+@using Factory.Models
+
+<h2>Create a new Engineer</h2>
+
+@using (Html.BeginForm())
+{
+  <div class="form-row">
+      @Html.LabelFor(model => model.FirstName, "First name")
+      @Html.TextBoxFor(model => model.FirstName)
+  </div>
+  <div class="form-row">
+      @Html.LabelFor(model => model.LastName, "Last name")
+      @Html.TextBoxFor(model => model.LastName)
+  </div>
+  <div class="form-row">
+    @Html.LabelFor(model => model.PhoneNumber, "Phone number")
+    @Html.TextBoxFor(model => model.PhoneNumber)
+  </div>
+  <div class="form-row">
+    @Html.LabelFor(model => model.HourlyRate, "Hourly rate")
+    @Html.TextBoxFor(model => model.HourlyRate, new { @type="number"})
+  </div>
+  <button class="green" type="submit">Save</button>
+}
+
+<div class="button-area">
+  <a href='@Url.Action("Index")'>
+    <button>Cancel</button>
+  </a>
+</div>
