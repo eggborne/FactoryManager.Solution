@@ -5,6 +5,8 @@
   --main-text-color: #222;
   --header-color: #616161;
   --header-text-color: #a1c3a1;
+	--text-highlight-color: rgb(160, 128, 68);
+	--link-text-color: rgb(73, 105, 32);
 }
 
 *, * *, * * * {
@@ -49,9 +51,14 @@ footer {
 	padding:8px;
 }
 
+span.highlighted {
+  color: var(--text-highlight-color);
+}
+
 a {
-	color: rgb(158, 219, 79);
+	color: var(--link-text-color);
 	text-decoration: none;
+	font-weight: bold;
 }
 
 ul {
@@ -62,7 +69,6 @@ ul {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	border-radius: 0.5rem;
 	/* overflow: hidden; */
 }
 
@@ -70,7 +76,6 @@ li {
 	position: relative;
 	background-color: #ffffff22;
 	padding: 0 1rem;
-	border-radius: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -84,17 +89,9 @@ form {
 	display: flex;
 	flex-direction: column;
 	width: min-content;
-	border-radius: 0.5rem;
 }
 
-form > .form-row:first-of-type {
-	border-radius: 0.5rem 0.5rem 0 0;
-}
-form > .form-row:last-of-type {
-	border-radius: 0 0 0.5rem 0.5rem;
-}
-
-form > .form-row {
+form > .form-row, .info-row {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -102,8 +99,9 @@ form > .form-row {
   gap: 1rem;
   background-color: #ffffff11;
   margin: 1rem;
-  width: 24rem;
+  /* width: max-content; */
 }
+
 form > .form-row:nth-child(odd) {
   background-color: #ffffff22;
 }
@@ -125,7 +123,6 @@ input, select, textarea {
 	font-family: inherit;
 	font-size: inherit;
   min-width: 10rem;
-	border-radius: 0.325rem;
 }
 
 input[type="number"] {
@@ -138,10 +135,8 @@ button {
 	padding: 1rem;
 	background-color: rgb(94, 94, 94);
 	color: #eee;
-	border-radius: 0.5rem;
 	cursor: pointer;
-	transition: color 300ms ease, scale 300ms ease, outline 200ms ease;
-	margin: 2rem 0.5rem;
+	transition: all 200ms ease;
   border-width: 0;
 }
 
@@ -158,12 +153,45 @@ button.red {
 }
 
 button:hover {
-	outline: 0.25rem solid rgb(169, 236, 246);
-	scale: 1.05;
+	/* outline: 0.25rem solid rgb(169, 236, 246);
+	scale: 1.05; */
 	color: rgb(169, 236, 246);
+	background-color: blue;
 }
 button:active {
 	scale: 0.9;
+}
+
+.button-area {
+  display: flex;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.description-area, .info-area {
+	border: 0.1rem solid #00000055;
+	padding: 1rem;
+	display: inline-block;
+	font-style: italic;
+	opacity: 0.8;
+}
+
+.info-area {
+	border: 0;
+	padding: 0;
+}
+
+.info-row {
+	font-style: normal;
+	padding: 0;
+	background-color: #0000000e;
+  gap: 1rem;
+  margin: 0rem;
+	padding: 1rem;
+}
+
+.info-row:nth-child(odd) {
+	background-color: #00000024;
 }
 
 .floating-header {
@@ -178,7 +206,6 @@ button:active {
 	left: 1rem;
 	translate: 0 -50%;
 	background-color: rgb(55, 90, 55);
-	border-radius: inherit;
 	padding: 0.5rem 1rem;
 	box-shadow: 1px 1px 1px black;
 }

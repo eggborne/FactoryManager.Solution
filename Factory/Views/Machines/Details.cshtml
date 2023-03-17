@@ -1,3 +1,50 @@
 @{
   Layout = "_Layout";
 }
+
+@using Factory.Models
+@model Factory.Models.Machine
+
+<h2>Details for <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)<span></h2>
+
+<div class="description-area">
+  <div>@Html.DisplayFor(model => model.Description)</div>
+</div>
+
+
+@if (@Model.JoinEntities.Count == 0)
+{
+  <p>There are no Engineers certified to repair this Machine!</p>
+}
+else
+{
+  <h4>Certified Engineers:</h4>
+  <ul class="engineer-list">
+  @foreach (EngineerMachine join in Model.JoinEntities)
+    {
+      <li>@join.Engineer.FirstName @join.Engineer.LastName
+        @using (Html.BeginForm("DeleteJoin", "Machines"))
+        {
+          @Html.Hidden("joinId", @join.EngineerMachineId)
+          <button class="red" type="submit">Delete</button>
+        }
+      </li>
+    }
+  </ul>
+}
+<a href='@Url.Action("AddEngineer", new { id = Model.MachineId })'>
+  <button class="green">Certify an Engineer</button>
+</a>
+
+<div class="button-area">
+  <a href='@Url.Action("Index")'>
+    <button>Back to List</button>
+  </a>
+  <a href='@Url.Action("Edit", new { id = Model.MachineId })'>
+    <button class="yellow">Edit Machine</button>
+  </a>
+
+  <a href='@Url.Action("Delete", new { id = Model.MachineId })'>
+    <button class="red">Delete Machine</button>
+  </a>
+</div>

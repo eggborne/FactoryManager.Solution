@@ -34,10 +34,19 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddEngineer(int id)
+    public ActionResult Details(int id)
+    {
+      Machine thisMachine = _db.Machines
+          .Include(machine => machine.JoinEntities)
+          .ThenInclude(join => join.Engineer)
+          .FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
+    }
+
+    public ActionResult AddMachine(int id)
     {
       Machine thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
-      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name", "Name");
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name", "Name");
       return View(thisMachine);
     }
   }
