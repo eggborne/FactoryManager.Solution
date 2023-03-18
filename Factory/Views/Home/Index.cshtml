@@ -2,7 +2,29 @@
   Layout = "_Layout";
 }
 
+@using Factory.Models;
+
 <h2>Factory Dashboard</h2>
+
+<div class="dashboard-section">
+  <h4>All Engineers</h4>
+  <ul class="capsule-list engineer-list">
+  @foreach (Engineer engineer in ViewBag.engineers)
+  {
+    <li>@Html.ActionLink($"{engineer.FirstName} {engineer.LastName}", "Details", "Engineers", new { id = engineer.EngineerId })</li>
+  }
+  </ul>
+</div>
+
+<div class="dashboard-section">
+  <h4>All Machines</h4>
+  <ul class="capsule-list engineer-list">
+  @foreach (Machine machine in ViewBag.machines)
+  {
+    <li>@Html.ActionLink($"{machine.Manufacturer} {machine.Model}", "Details", "Machines", new { id = machine.MachineId })</li>
+  }
+  </ul>
+</div>
 
 <div class="button-area">
   <a href='@Url.Action("Index", "Engineers")'>
