@@ -6,13 +6,13 @@
 
 A C#/ASP.NET/EFCore web app that allows a user to view and edit a database of machines and the engineer(s) who are certified to repair them.
 
-## Technologies Used:
+## Technologies Used
 * C#
 * .NET
 * ASP.NET
 * Entity Framework Core
 
-## Database diagram
+## Database diagram:
 
 ![ScreenShot](/db.png)
 
