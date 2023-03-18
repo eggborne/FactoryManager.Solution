@@ -27,7 +27,7 @@
   </div>
   <div class="form-row">
     @Html.LabelFor(model => model.HourlyRate, "Hourly rate")
-    @Html.TextBoxFor(model => model.HourlyRate, new { @type="number"})
+    <input type="number" name="HourlyRate" value="20">
     @Html.ValidationMessageFor(model => model.HourlyRate, "", new { @class = "error-message" })
   </div>
   <button class="green" type="submit">Save</button>
