@@ -4,7 +4,9 @@
 
 @model Factory.Models.Engineer
 
-<h2>Add a Machine for Engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</span></h2>
+<div class="view-header"><h2>Add a Machine for Engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</span></h2></div>
+
+<div class="view-body edit">
 
 @using (Html.BeginForm(FormMethod.Post, new { @class = "dropdown-form" }))
 {
@@ -27,6 +29,8 @@
     <div class="dropdown-empty-message">You must add a machine first!</div>
   }
 }
+
+</div>
 
 <div class="button-area">
   <a href='@Url.Action("Details", "Engineers", new { id = Model.EngineerId})'>

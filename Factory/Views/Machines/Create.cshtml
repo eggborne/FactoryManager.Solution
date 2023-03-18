@@ -5,7 +5,9 @@
 @model Factory.Models.Machine
 @using Factory.Models
 
-<h2>Create a new Machine</h2>
+<div class="view-header"><h2>Create a new Machine</h2></div>
+
+<div class="view-body create">
 
 @using (Html.BeginForm(FormMethod.Post, new { @class = "edit-form" }))
 {
@@ -26,6 +28,8 @@
   </div>
   <button class="green" type="submit">Save</button>
 }
+
+</div>
 
 <div class="button-area">
   <a onclick="history.go(-1)">

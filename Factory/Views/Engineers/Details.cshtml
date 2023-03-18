@@ -6,7 +6,7 @@
 @model Factory.Models.Engineer
 
 <div class="editing-header">
-  <h2>Details for engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)<span></h2>
+  <div class="view-header"><h2>Details for engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)<span></h2></div>
   <div class="button-area">
     <a href='@Url.Action("Edit", new { id = Model.EngineerId })'>
       <button class="yellow">Edit</button>
@@ -16,7 +16,10 @@
     </a>
   </div>
 </div>
+
 <hr />
+
+<div class="view-body details">
 
 <div class="info-area">
   <div class="info-row">
@@ -43,7 +46,7 @@
 }
 else
 {
-  <h4>Machine certifications:</h4>
+  <h3>Machine certifications:</h3>
   <ul class="capsule-list machine-list">
   @foreach (EngineerMachine join in Model.JoinEntities)
     {
@@ -58,12 +61,17 @@ else
     }
   </ul>
 }
+
 <div class="button-area">
   <a href='@Url.Action("AddMachine", new { id = Model.EngineerId })'>
     <button class="green">Certify for new Machine</button>
   </a>
 </div>
+
+</div>
+
 <hr />
+
 <p>
   <a href='@Url.Action("Index")'>
     <button>Show Engineer List</button>

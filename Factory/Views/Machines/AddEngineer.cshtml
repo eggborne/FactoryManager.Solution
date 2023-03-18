@@ -6,7 +6,9 @@
 
 @model Factory.Models.Machine
 
-<h2>Certify an engineer for machine <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2>
+<div class="view-header"><h2>Certify an engineer for machine <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2></div>
+
+<div class="view-body edit">
 
 @using (Html.BeginForm(FormMethod.Post, new { @class = "dropdown-form" }))
 {
@@ -29,6 +31,8 @@
     <div class="dropdown-empty-message">You must add an Engineer first!</div>
   }
 }
+
+</div>
 
 <div class="button-area">
   <a href='@Url.Action("Details", "Machines", new { id = Model.MachineId })'>

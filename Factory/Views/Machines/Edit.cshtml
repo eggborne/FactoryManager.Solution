@@ -6,7 +6,9 @@
 
 @model Factory.Models.Machine
 
-<h2>Editing <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2>
+<div class="view-header"><h2>Editing <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2></div>
+
+<div class="view-body edit">
 
 @using (Html.BeginForm(FormMethod.Post, new { @class = "edit-form" }))
 {
@@ -26,6 +28,8 @@
   </div>
   <button class="green" type="submit">Save</button>
 }
+
+</div>
 
 <div class="button-area">
   <a href='@Url.Action("Details", "Machines", new { id = Model.MachineId })'>

@@ -4,7 +4,9 @@
 
 @model Factory.Models.Machine
 
-<h2>Are you sure you want to delete <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span>?</h2>
+<div class="view-header"><h2>Are you sure you want to delete <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span>?</h2></div>
+
+<div class="view-body delete">
 
 @using (Html.BeginForm())
 {
@@ -12,6 +14,8 @@
     <button class="red" type="submit">Delete</button>
   </div>
 }
+
+</div>
 
 <div class="button-area">
   <a href='@Url.Action("Details", new { id = Model.MachineId })'>
