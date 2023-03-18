@@ -18,9 +18,14 @@ A C#/ASP.NET/EFCore web app that allows a user to view and edit a database of ma
 2. In the repo folder, navigate to `Factory/` and open `appsettings.json.example`.
 3. Replace `[YOUR-DB-NAME]`, `[YOUR-USER-HERE]`, and `[YOUR-PASSWORD-HERE]` with your own credentials.
 4. Save the file as `appsettings.json`.
-2. Open your shell (e.g., Terminal or GitBash) and navigate to this project's production directory called "Factory".
-3. Run `dotnet watch run` in the command line to start the project in development mode with a watcher.
-4. Open the browser to _https://localhost:5001_. If you cannot access localhost:5001 it is likely because you have not configured a .NET developer security certificate for HTTPS. For more information, [visit the Microsoft documentation on dev-certs](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs).
+5. Open your shell (e.g., Terminal or GitBash).
+6. Navigate to this project's production directory called "Factory".
+7. If don't have the `dotnet-ef` package installed globally, run the command `dotnet tool install --global dotnet-ef --version 6.0.0`.
+8. If you don't have the `Microsoft.EntityFrameworkCore.Design` package installed, run the command `dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0`.
+9. Start a local development server with a program such as MySQL Workbench on port 3306.
+10. Run `dotnet ef database update` in the command line.
+11. Run `dotnet watch run` in the command line to start the project in development mode with a watcher.
+12. Open the browser to _https://localhost:5001_. If you cannot access localhost:5001 it is likely because you have not configured a .NET developer security certificate for HTTPS. For more information, [visit the Microsoft documentation on dev-certs](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-dev-certs).
 
 ## Known Bugs
 
