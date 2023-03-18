@@ -15,18 +15,22 @@
   <div class="form-row">
       @Html.LabelFor(model => model.FirstName, "First name")
       @Html.EditorFor(model => model.FirstName)
+      @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
       @Html.LabelFor(model => model.LastName, "Last name")
       @Html.EditorFor(model => model.LastName)
+      @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
     @Html.LabelFor(model => model.PhoneNumber, "Phone number")
     @Html.EditorFor(model => model.PhoneNumber)
+    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "error-message" })
   </div>
   <div class="form-row admin">
     @Html.LabelFor(model => model.HourlyRate, "Hourly rate")
     @Html.EditorFor(model => model.HourlyRate, new { @type="number"})
+    @Html.ValidationMessageFor(model => model.HourlyRate, "", new { @class = "error-message" })
   </div>
   <button class="green" type="submit">Save</button>
 }

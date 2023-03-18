@@ -6,7 +6,7 @@
 
 @model Factory.Models.Machine
 
-<div class="view-header"><h2>Editing <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2></div>
+<div class="view-header"><h2>Editing <span class="highlighted">@Model.Manufacturer @Model.Model</span></h2></div>
 
 <div class="view-body edit">
 
@@ -15,16 +15,19 @@
   @Html.HiddenFor(model => model.MachineId)
 
   <div class="form-row">
-      @Html.LabelFor(model => model.Manufacturer)
-      @Html.EditorFor(model => model.Manufacturer)
+    @Html.LabelFor(model => model.Manufacturer)
+    @Html.EditorFor(model => model.Manufacturer, new { htmlAttributes = new { placeholder = @Model.Manufacturer } })
+    @Html.ValidationMessageFor(model => model.Manufacturer, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
-      @Html.LabelFor(model => model.Model)
-      @Html.EditorFor(model => model.Model)
+    @Html.LabelFor(model => model.Model)
+    @Html.EditorFor(model => model.Model)
+    @Html.ValidationMessageFor(model => model.Model, "", new { @class = "error-message" })
   </div>
   <div class="form-row text-area">
     @Html.LabelFor(model => model.Description)
     <textarea name="Description">@Model.Description</textarea>
+    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "error-message" })
   </div>
   <button class="green" type="submit">Save</button>
 }

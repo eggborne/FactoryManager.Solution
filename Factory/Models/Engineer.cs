@@ -18,7 +18,7 @@ namespace Factory.Models
     public string PhoneNumber { get; set; }
 
     [Required(ErrorMessage = "Hourly rate can't be empty!")]
-    [Range(20, int.MaxValue, ErrorMessage = "Hourly rate must be above 20!")]
+    [Range(20, int.MaxValue, ErrorMessage = "Hourly rate must be at least 20!")]
     public int HourlyRate { get; set; }
     public List<EngineerMachine> JoinEntities { get; }
   }
