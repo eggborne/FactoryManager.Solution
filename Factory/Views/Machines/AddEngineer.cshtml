@@ -8,7 +8,7 @@
 
 <h2>Certify an engineer for machine <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post, new { @class = "dropdown-form" }))
 {
   @Html.HiddenFor(model => model.MachineId)
 

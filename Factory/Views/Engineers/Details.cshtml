@@ -41,7 +41,7 @@ else
         {
           @Html.Hidden("joinId", @join.EngineerMachineId)
           @Html.Hidden("engineerId", @Model.EngineerId)
-          <button class="red" type="submit">Delete</button>
+          <button class="red" type="submit">Revoke</button>
         }
       </li>
     }
@@ -52,8 +52,8 @@ else
 </a>
 
 <div class="button-area">
-  <a href='@Url.Action("Index")'>
-    <button>Back to List</button>
+  <a onclick="history.go(-1)">
+    <button>Back</button>
   </a>
   <a href='@Url.Action("Edit", new { id = Model.EngineerId })'>
     <button class="yellow">Edit Engineer</button>

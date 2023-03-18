@@ -7,7 +7,7 @@
 
 <h2>Create a new Machine</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post, new { @class = "edit-form" }))
 {
   <div class="form-row">
     @Html.LabelFor(model => model.Manufacturer)
@@ -28,7 +28,7 @@
 }
 
 <div class="button-area">
-  <a href='@Url.Action("Index")'>
+  <a onclick="history.go(-1)">
     <button>Cancel</button>
   </a>
 </div>

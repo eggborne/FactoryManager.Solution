@@ -27,7 +27,8 @@ else
         {
           @Html.Hidden("joinId", @join.EngineerMachineId)
           @Html.Hidden("machineId", @Model.MachineId)
-          <button class="red" type="submit">Delete</button>
+          
+          <button class="red" type="submit">Uncertify</button>
         }
       </li>
     }
@@ -38,8 +39,8 @@ else
 </a>
 
 <div class="button-area">
-  <a href='@Url.Action("Index")'>
-    <button>Back to List</button>
+  <a onclick="history.go(-1)">
+    <button>Back</button>
   </a>
   <a href='@Url.Action("Edit", new { id = Model.MachineId })'>
     <button class="yellow">Edit Machine</button>

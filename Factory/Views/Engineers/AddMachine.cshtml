@@ -6,7 +6,7 @@
 
 <h2>Add a Machine for Engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</span></h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(FormMethod.Post, new { @class = "dropdown-form" }))
 {
   @Html.HiddenFor(model => model.EngineerId)
 
