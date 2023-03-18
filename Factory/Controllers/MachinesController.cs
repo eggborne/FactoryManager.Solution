@@ -16,10 +16,7 @@ namespace Factory.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
-    {
-      return View(_db.Machines.ToList());
-    }
+    // CREATE
 
     public ActionResult Create()
     {
@@ -34,6 +31,13 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
+    // READ
+
+    public ActionResult Index()
+    {
+      return View(_db.Machines.ToList());
+    }
+
     public ActionResult Details(int id)
     {
       Machine thisMachine = _db.Machines
@@ -42,6 +46,8 @@ namespace Factory.Controllers
           .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
     }
+
+    // UPDATE
 
     public ActionResult Edit(int id)
     {
@@ -56,6 +62,23 @@ namespace Factory.Controllers
     public ActionResult Edit(Machine machine)
     {
       _db.Machines.Update(machine);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    // DELETE
+
+    public ActionResult Delete(int id)
+    {
+      Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      _db.Machines.Remove(thisMachine);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

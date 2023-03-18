@@ -16,10 +16,7 @@ namespace Factory.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
-    {
-      return View(_db.Engineers.ToList());
-    }
+    // CREATE
 
     public ActionResult Create()
     {
@@ -34,6 +31,13 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
+    // READ
+
+    public ActionResult Index()
+    {
+      return View(_db.Engineers.ToList());
+    }
+
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
@@ -42,6 +46,8 @@ namespace Factory.Controllers
           .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
+
+    // UPDATE
 
     public ActionResult Edit(int id)
     {
@@ -56,6 +62,23 @@ namespace Factory.Controllers
     public ActionResult Edit(Engineer engineer)
     {
       _db.Engineers.Update(engineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    // DELETE
+
+    public ActionResult Delete(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
