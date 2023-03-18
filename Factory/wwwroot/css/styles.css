@@ -95,6 +95,10 @@ form {
 	width: min-content;
 }
 
+.form-row {
+	position: relative;
+}
+
 form > .form-row, .info-row {
 	display: flex;
 	align-items: center;
@@ -259,9 +263,13 @@ button:active {
 }
 
 .error-message {
-	height: 10rem;
+	position: absolute;
+	top: 0;
+	right: 0.25rem;
+	width: max-content;
+	font-size: 1rem;
+	/* font-weight: bold; */
 	color: red;
-	opacity: 0;
 }
 
 .error-message.overlap {
