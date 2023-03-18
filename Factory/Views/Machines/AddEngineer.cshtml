@@ -1,3 +1,5 @@
+@using System.Linq;
+
 @{
   Layout = "_Layout";
 }
@@ -9,11 +11,23 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.MachineId)
-  <div class="form-row">
-    @Html.Label("Select Engineer")
-    @Html.DropDownList("EngineerId")
-    <button class="green" type="submit">Save</button>
-  </div>
+
+  var counter=0;
+  foreach(var a in ViewBag.EngineerId)
+  {
+    counter++;
+    break;
+  }
+  
+  @if(counter > 0){
+    <div class="form-row">
+      @Html.Label("Select Engineer")
+      @Html.DropDownList("EngineerId")
+      <button class="green" type="submit">Save</button>
+    </div>
+  } else {
+    <div class="dropdown-empty-message">You must add an Engineer first!</div>
+  }
 }
 
 <div class="button-area">

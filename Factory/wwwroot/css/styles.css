@@ -246,6 +246,14 @@ button:active {
 	background-color: rgb(255, 248, 212);
 }
 
+.dashboard-section {
+	border: var(--small-border);
+	border-radius: 0.5rem;
+	margin: 1rem 0;
+	padding: 0 1rem;
+	background-color: #00000011;
+}
+
 .floating-header {
 	position: absolute;
 	font-size: 1.25rem;
@@ -274,6 +282,12 @@ button:active {
 
 .error-message.overlap {
 	animation: flash-on 2000ms ease forwards;
+}
+
+.dropdown-empty-message {
+	font-weight: bold;
+	width: max-content;
+	color: rgb(140, 7, 7);
 }
 
 @keyframes flash-on {
