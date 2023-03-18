@@ -5,7 +5,7 @@
 @using Factory.Models
 @model Factory.Models.Engineer
 
-<h2>Details for <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)<span></h2>
+<h2>Details for engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)<span></h2>
 
 <div class="info-area">
   <div class="info-row">
@@ -48,7 +48,7 @@ else
   </ul>
 }
 <a href='@Url.Action("AddMachine", new { id = Model.EngineerId })'>
-  <button class="green">Add a Machine</button>
+  <button class="green">Certify for new Machine</button>
 </a>
 
 <div class="button-area">

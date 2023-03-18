@@ -5,7 +5,7 @@
 @using Factory.Models
 @model Factory.Models.Machine
 
-<h2>Details for <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)<span></h2>
+<h2>Details for machine <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)<span></h2>
 
 <div class="description-area">
   <div>@Html.DisplayFor(model => model.Description)</div>
@@ -19,13 +19,14 @@
 else
 {
   <h4>Certified Engineers:</h4>
-  <ul class="engineer-list">
+  <ul class="capsule-list engineer-list">
   @foreach (EngineerMachine join in Model.JoinEntities)
     {
       <li>@join.Engineer.FirstName @join.Engineer.LastName
         @using (Html.BeginForm("DeleteJoin", "Machines"))
         {
           @Html.Hidden("joinId", @join.EngineerMachineId)
+          @Html.Hidden("machineId", @Model.MachineId)
           <button class="red" type="submit">Delete</button>
         }
       </li>
@@ -33,7 +34,7 @@ else
   </ul>
 }
 <a href='@Url.Action("AddEngineer", new { id = Model.MachineId })'>
-  <button class="green">Certify an Engineer</button>
+  <button class="green">Certify new Engineer</button>
 </a>
 
 <div class="button-area">

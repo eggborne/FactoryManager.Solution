@@ -220,6 +220,7 @@ button:active {
 	gap: 0 1rem;
 	transition: scale 300ms ease;
 	border: var(--small-border);
+	cursor: pointer;
 }
 
 .capsule-list li:hover {

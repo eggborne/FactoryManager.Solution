@@ -1,3 +1,23 @@
 @{
   Layout = "_Layout";
 }
+
+@model Factory.Models.Machine
+
+<h2>Certify an engineer for machine <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)</span></h2>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.MachineId)
+  <div class="form-row">
+    @Html.Label("Select Engineer")
+    @Html.DropDownList("EngineerId")
+    <button class="green" type="submit">Save</button>
+  </div>
+}
+
+<div class="button-area">
+  <a href='@Url.Action("Details", "Machines", new { id = Model.MachineId })'>
+    <button>Cancel</button>
+  </a>
+</div>
