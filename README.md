@@ -12,6 +12,10 @@ A C#/ASP.NET/EFCore web app that allows a user to view and edit a database of ma
 * ASP.NET
 * Entity Framework Core
 
+## Database diagram
+
+![ScreenShot](/db.png)
+
 ## Setup/Installation Instructions
 
 1. Clone this repo.
