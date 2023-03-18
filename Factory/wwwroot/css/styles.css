@@ -38,7 +38,13 @@ main {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	gap: 1rem;
 	margin: 1rem;
+	transition: opacity 300ms ease;
+}
+
+main.obscured {
+	opacity: 0.2;
 }
 
 header, footer {
@@ -92,6 +98,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
+
 }
 
 .view-body.home {

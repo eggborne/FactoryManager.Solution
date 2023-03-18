@@ -6,7 +6,7 @@
 
 <div class="view-body home">
 
-<div class="dashboard-section">
+<div id="engineer-splash-list" class="dashboard-section obscured">
   <h3>Engineers</h4>
   <ul class="capsule-list engineer-list">
   @foreach (Engineer engineer in ViewBag.engineers)
@@ -21,7 +21,7 @@
   </ul>
 </div>
 
-<div class="dashboard-section">
+<div id="machine-splash-list" class="dashboard-section obscured">
   <h3>Machines</h4>
   <ul class="capsule-list machine-list">
     @foreach (Machine machine in ViewBag.machines)
