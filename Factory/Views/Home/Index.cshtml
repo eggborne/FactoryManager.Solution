@@ -11,9 +11,11 @@
     {
       <li>@Html.ActionLink($"{engineer.FirstName} {engineer.LastName}", "Details", "Engineers", new { id = engineer.EngineerId })</li>
     }
-    <a href='@Url.Action("Create", "Engineers")'>
-      <button class="green">Create new Engineer</button>
-    </a>
+    <p style="width: 100%">
+      <a href='@Url.Action("Create", "Engineers")'>
+        <button class="green">Create new Engineer</button>
+      </a>
+    </p>
   </ul>
 </div>
 
@@ -24,9 +26,11 @@
     {
       <li>@Html.ActionLink($"{machine.Manufacturer} {machine.Model}", "Details", "Machines", new { id = machine.MachineId })</li>
     }
-    <a href='@Url.Action("Create", "Machines")'>
-      <button class="green">Create new Machine</button>
-    </a>
+    <p style="width: 100%">
+      <a href='@Url.Action("Create", "Machines")'>
+        <button class="green">Create new Machine</button>
+      </a>
+    </p>
   </ul>
 </div>
 

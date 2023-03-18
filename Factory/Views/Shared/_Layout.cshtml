@@ -6,7 +6,7 @@
     <title>Grooming Shop Admin Dashboard</title>
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
-  <body>
+  <body onload="document.documentElement.style.setProperty('--actual-height', window.innerHeight + 'px')">
     @await Html.PartialAsync("Header")
     @RenderBody()
     @await Html.PartialAsync("Footer")

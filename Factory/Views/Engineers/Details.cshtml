@@ -5,7 +5,18 @@
 @using Factory.Models
 @model Factory.Models.Engineer
 
-<h2>Details for engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)<span></h2>
+<div class="editing-header">
+  <h2>Details for engineer <span class="highlighted">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)<span></h2>
+  <div class="button-area">
+    <a href='@Url.Action("Edit", new { id = Model.EngineerId })'>
+      <button class="yellow">Edit</button>
+    </a>
+    <a href='@Url.Action("Delete", new { id = Model.EngineerId })'>
+      <button class="red">Delete</button>
+    </a>
+  </div>
+</div>
+<hr />
 
 <div class="info-area">
   <div class="info-row">
@@ -28,7 +39,7 @@
 
 @if (@Model.JoinEntities.Count == 0)
 {
-  <p>This Engineer is not certified to repair any machines!</p>
+  <p>This engineer is not certified to repair any machines!</p>
 }
 else
 {
@@ -47,19 +58,17 @@ else
     }
   </ul>
 }
-<a href='@Url.Action("AddMachine", new { id = Model.EngineerId })'>
-  <button class="green">Certify for new Machine</button>
-</a>
-
 <div class="button-area">
-  <a onclick="history.go(-1)">
-    <button>Back</button>
-  </a>
-  <a href='@Url.Action("Edit", new { id = Model.EngineerId })'>
-    <button class="yellow">Edit Engineer</button>
-  </a>
-
-  <a href='@Url.Action("Delete", new { id = Model.EngineerId })'>
-    <button class="red">Delete Engineer</button>
+  <a href='@Url.Action("AddMachine", new { id = Model.EngineerId })'>
+    <button class="green">Certify for new Machine</button>
   </a>
 </div>
+<hr />
+<div class="button-area">
+  <a href='@Url.Action("Index")'>
+    <button>Show Engineer List</button>
+  </a>
+</div>
+<a href='@Url.Action("Index", "Home")'>
+  <button>Home</button>
+</a>
