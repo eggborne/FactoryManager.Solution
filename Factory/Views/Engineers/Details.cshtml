@@ -33,13 +33,14 @@
 else
 {
   <h4>Machine certifications:</h4>
-  <ul class="machine-list">
+  <ul class="capsule-list machine-list">
   @foreach (EngineerMachine join in Model.JoinEntities)
     {
       <li>@join.Machine.Manufacturer @join.Machine.Model
         @using (Html.BeginForm("DeleteJoin", "Engineers"))
         {
           @Html.Hidden("joinId", @join.EngineerMachineId)
+          @Html.Hidden("engineerId", @Model.EngineerId)
           <button class="red" type="submit">Delete</button>
         }
       </li>

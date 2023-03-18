@@ -217,6 +217,7 @@ button:active {
 	padding: 1rem 1.25rem;
 	min-width: 10rem;
 	justify-content: center;
+	gap: 0 1rem;
 	transition: scale 300ms ease;
 	border: var(--small-border);
 }
