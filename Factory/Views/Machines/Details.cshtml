@@ -44,7 +44,7 @@
     <div>@Html.DisplayFor(model => model.Description)</div>
   </div>
 
-  @if (@Model.JoinEntities.Count == 0)
+  @if (@Model.CertificationPartners.Count == 0)
   {
     <p>There are no Engineers certified to repair this machine!</p>
   }
@@ -52,7 +52,7 @@
   {
     <h3>Certified Engineers:</h3>
     <ul class="capsule-list engineer-list">
-    @foreach (EngineerMachine join in Model.JoinEntities)
+    @foreach (EngineerMachine join in Model.CertificationPartners)
       {
         <li>@join.Engineer.FirstName<br />@join.Engineer.LastName
           @using (Html.BeginForm("DeleteJoin", "Machines"))

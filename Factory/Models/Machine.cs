@@ -24,6 +24,6 @@ namespace Factory.Models
     
     [Required(ErrorMessage = "Status can't be empty!")]
     public string Status { get; set; }
-    public List<EngineerMachine> JoinEntities { get; }
+    public List<EngineerMachine> CertificationPartners { get; }
   }
 }

@@ -26,6 +26,18 @@
     @Html.TextBoxFor(model => model.PhoneNumber)
     @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "error-message" })
   </div>
+  
+  <div class="form-row form-grid">
+    <h3>Availablilty</h3>
+    <div class="day-label">Monday</div><div><input name="MondayStartTime" class="start-time" type="time"></div><div><input name="MondayEndTime" class="end-time" type="time"></div>
+    <div class="day-label">Tuesday</div><div><input name="TuesdayStartTime" class="start-time" type="time"></div><div><input name="TuesdayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Wednesday</div><div><input name="WednesdayStartTime" class="start-time" type="time"></div><div><input name="WednesdayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Thurdsay</div><div><input name="ThurdsayStartTime" class="start-time" type="time"></div><div><input name="ThurdsayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Friday</div><div><input name="FridayStartTime" class="start-time" type="time"></div><div><input name="FridayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Saturday</div><div><input name="SaturdayStartTime" class="start-time" type="time"></div><div><input name="SaturdayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Sunday</div><div><input name="SundayStartTime" class="start-time" type="time"></div><div><input name="SundayEndTime" class="end-time" type="time"></div>
+  </div>
+
   <div class="form-row">
     @Html.LabelFor(model => model.HourlyRate, "Hourly rate")
     <input type="number" name="HourlyRate" value="20">

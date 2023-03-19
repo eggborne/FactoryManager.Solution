@@ -48,7 +48,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
-          .Include(engineer => engineer.JoinEntities)
+          .Include(engineer => engineer.CertificationPartners)
           .ThenInclude(join => join.Machine)
           .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
@@ -59,7 +59,7 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Engineer thisEngineer = _db.Engineers
-            .Include(engineer => engineer.JoinEntities)
+            .Include(engineer => engineer.CertificationPartners)
             .ThenInclude(join => join.Machine)
             .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);

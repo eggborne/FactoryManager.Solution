@@ -49,7 +49,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Machine thisMachine = _db.Machines
-          .Include(machine => machine.JoinEntities)
+          .Include(machine => machine.CertificationPartners)
           .ThenInclude(join => join.Engineer)
           .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
@@ -60,7 +60,7 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Machine thisMachine = _db.Machines
-            .Include(machine => machine.JoinEntities)
+            .Include(machine => machine.CertificationPartners)
             .ThenInclude(join => join.Engineer)
             .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);

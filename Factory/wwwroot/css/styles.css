@@ -245,6 +245,39 @@ form > .form-row, .info-row {
 	height: 4rem;
 }
 
+form > .form-row.form-grid {
+	display: grid;
+	grid-template-columns: 1fr 10rem 10rem;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	width: 36rem;
+	align-self: center;
+}
+
+form > .form-row.form-grid > h3 {
+	margin: 0;
+	width: 100%;
+	grid-column-end: 3;
+	text-align: center;
+}
+
+form > .form-row.form-grid > * {
+	height: min-content;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.form-grid .day-label {
+	grid-column-start: 1;
+}
+
+.form-grid .start-time {
+	grid-column-start: 2;
+}
+.form-grid .end-time {
+	grid-column-start: 3;
+}
+
 .form-text-input-area > span:first-of-type {
   width: max-content;
 }
@@ -478,6 +511,7 @@ form {
 .modal.obscured {
 	scale: 0.95;
 	opacity: 0;
+	pointer-events: none;
 }
 
 .modal .button-area {
