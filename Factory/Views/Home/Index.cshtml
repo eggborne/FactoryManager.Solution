@@ -6,33 +6,23 @@
 
 <div class="view-body home">
 
-<div id="engineer-splash-list" class="dashboard-section obscured">
+<div class="dashboard-section">
   <h3>Engineers</h4>
   <ul class="capsule-list engineer-list">
   @foreach (Engineer engineer in ViewBag.engineers)
     {
       <li>@Html.ActionLink($"{engineer.FirstName} {engineer.LastName}", "Details", "Engineers", new { id = engineer.EngineerId })</li>
     }
-    <p style="width: 100%">
-      <a href='@Url.Action("Create", "Engineers")'>
-        <button class="green">Create new Engineer</button>
-      </a>
-    </p>
   </ul>
 </div>
 
-<div id="machine-splash-list" class="dashboard-section obscured">
+<div class="dashboard-section">
   <h3>Machines</h4>
   <ul class="capsule-list machine-list">
     @foreach (Machine machine in ViewBag.machines)
     {
       <li>@Html.ActionLink($"{machine.Manufacturer} {machine.Model}", "Details", "Machines", new { id = machine.MachineId })</li>
     }
-    <p style="width: 100%">
-      <a href='@Url.Action("Create", "Machines")'>
-        <button class="green">Create new Machine</button>
-      </a>
-    </p>
   </ul>
 </div>
 
@@ -40,8 +30,8 @@
 
 <div class="button-area">
   <a href='@Url.Action("Index", "Engineers")'>
-    <button>See all Engineers</button>
+    <button>Manage Engineers</button>
   <a href='@Url.Action("Index", "Machines")'>
-    <button>See all Machines</button>
+    <button>Manage Machines</button>
   </a>
 </div>
