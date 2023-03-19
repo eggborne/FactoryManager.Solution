@@ -24,7 +24,22 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Engineer engineer)
+    public ActionResult Create(Engineer engineer, 
+      string MondayStartTime,
+      string MondayEndTime,
+      string TuesdayStartTime,
+      string TuesdayEndTime,
+      string WednesdayStartTime,
+      string WednesdayEndTime,
+      string ThurdsayStartTime,
+      string ThurdsayEndTime,
+      string FridayStartTime,
+      string FridayEndTime,
+      string SaturdayStartTime,
+      string SaturdayEndTime,
+      string SundayStartTime,
+      string SundayEndTime
+    )
     {
       if (!ModelState.IsValid)
       {
@@ -32,6 +47,7 @@ namespace Factory.Controllers
       }
       else
       {
+        List<string> days = new List<string>();
         _db.Engineers.Add(engineer);
         _db.SaveChanges();
         return RedirectToAction("Index");

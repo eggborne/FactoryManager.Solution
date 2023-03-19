@@ -15,7 +15,6 @@ namespace Factory.Models
     public string LastName { get; set; }
 
     [Required(ErrorMessage = "Email can't be empty!")]
-    [StringLength(maximumLength: 320)]
     [EmailAddress(ErrorMessage = "Must be a valid Email!")]
     public string Email { get; set; }
 
