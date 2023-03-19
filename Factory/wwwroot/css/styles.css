@@ -31,6 +31,23 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: calc(var(--actual-height) - 1px);
+	overflow-x: hidden;
+}
+
+body::after {
+	content: '';
+	position: fixed;
+	width: 100vw;
+	height: var(--actual-height);
+	background-color: rgb(0, 0, 0);
+	opacity: 0;
+	transition: opacity 300ms ease;
+	pointer-events: none;
+}
+
+body.veiled::after {
+	opacity: 0.75;
+	pointer-events: all;
 }
 
 main {
@@ -46,7 +63,7 @@ main {
 
 main.obscured {
 	opacity: 0;
-	translate: -2% 0;
+	translate: 2% 0;
 }
 
 header, footer {
@@ -129,11 +146,14 @@ a {
 	height: var(--header-height);
 	display: flex;
 	align-items: center;
-	padding: 0 1rem;
 }
 
 .view-header > h2 {
 	margin: 0;
+}
+
+h3 {
+	margin: 0.5rem 0;
 }
 
 ul {
@@ -404,6 +424,54 @@ form {
 	font-weight: bold;
 	width: max-content;
 	color: rgb(140, 7, 7);
+}
+
+.modal {
+	position: absolute;
+	min-width: 20rem;
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+	border: var(--small-border);
+	box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.18);
+	display: grid;
+	grid-template-columns: 1f 1fr;
+	grid-template-rows: 1fr 1fr var(--header-height);
+	gap: 1.5rem;
+	text-align: center;
+	padding: calc(Var(--header-height) / 2);
+	transition: scale 300ms ease, opacity 200ms ease;
+	z-index: 1;
+}
+
+.modal > .modal-message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.modal > .modal-message > .highlighted {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.modal.obscured {
+	scale: 0.9;
+	opacity: 0;
+}
+
+.modal .button-area {
+	align-items: center;
+	justify-content: center;
+}
+
+.modal button:not(.red) {
+	padding: 1rem 3rem;
+}
+
+.modal#delete-modal {
+	background-color: rgb(223, 205, 205);
 }
 
 @keyframes flash-on {

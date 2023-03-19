@@ -5,15 +5,33 @@
 @using Factory.Models
 @model Factory.Models.Machine
 
+<div id="delete-modal" class="modal obscured">
+  <div class="modal-message">
+    <span>Are you sure you want to delete</span>
+    <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)?</span>
+  </div>
+
+  <div class="button-area">
+    @using (Html.BeginForm("Delete", "Machines", new { id = @Model.MachineId }))
+    {
+      <button class="red" type="submit">Delete</button>
+    }
+  </div>
+
+  <div class="button-area">
+    <button onclick="hideModal('delete')">Cancel</button>
+  </div>
+</div>
+
 <div class="editing-header">
   <div class="view-header"><h2>Details for machine <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)<span></h2></div>
   <div class="button-area">
     <a href='@Url.Action("Edit", new { id = Model.MachineId })'>
       <button class="yellow">Edit</button>
     </a>
-    <a href='@Url.Action("Delete", new { id = Model.MachineId })'>
-      <button class="red">Delete</button>
-    </a>
+    <div>
+      <button onclick="showModal('delete');" class="red">Delete</button>
+    </div>
   </div>
 </div>
 
@@ -26,7 +44,7 @@
 
   @if (@Model.JoinEntities.Count == 0)
   {
-    <div>There are no Engineers certified to repair this machine!</div>
+    <p>There are no Engineers certified to repair this machine!</p>
   }
   else
   {
