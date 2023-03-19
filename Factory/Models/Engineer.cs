@@ -15,6 +15,8 @@ namespace Factory.Models
     public string LastName { get; set; }
 
     [Required(ErrorMessage = "Phone number can't be empty!")]
+    [StringLength(maximumLength: 14)]
+    [Phone(ErrorMessage = "Must be a valid phone number!")]
     public string PhoneNumber { get; set; }
 
     [Required(ErrorMessage = "Hourly rate can't be empty!")]

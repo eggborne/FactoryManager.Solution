@@ -7,35 +7,35 @@
 
 <div class="view-header"><h2>Create a new Engineer</h2></div>
 
-<div class="view-body create">
+<div onload="" class="view-body create">
 
 @using (Html.BeginForm())
 {
   <div class="form-row">
       @Html.LabelFor(model => model.FirstName, "First name")
-      @Html.TextBoxFor(model => model.FirstName)
+      @Html.TextBoxFor(model => model.FirstName, new { placeholder = "Toyo"})
       @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
       @Html.LabelFor(model => model.LastName, "Last name")
-      @Html.TextBoxFor(model => model.LastName)
+      @Html.TextBoxFor(model => model.LastName, new { placeholder = "Norobi" })
       @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
     @Html.LabelFor(model => model.PhoneNumber, "Phone number")
-    @Html.TextBoxFor(model => model.PhoneNumber)
+    @Html.TextBoxFor(model => model.PhoneNumber, new { placeholder = "(503)-867-5309", id = "engineer-phone-input" })
     @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "error-message" })
   </div>
-  
+
   <div class="form-row form-grid">
     <h3>Availablilty</h3>
-    <div class="day-label">Monday</div><div><input name="MondayStartTime" class="start-time" type="time"></div><div><input name="MondayEndTime" class="end-time" type="time"></div>
-    <div class="day-label">Tuesday</div><div><input name="TuesdayStartTime" class="start-time" type="time"></div><div><input name="TuesdayEndTime" class="end-time" type="time"></div>    
-    <div class="day-label">Wednesday</div><div><input name="WednesdayStartTime" class="start-time" type="time"></div><div><input name="WednesdayEndTime" class="end-time" type="time"></div>    
-    <div class="day-label">Thurdsay</div><div><input name="ThurdsayStartTime" class="start-time" type="time"></div><div><input name="ThurdsayEndTime" class="end-time" type="time"></div>    
-    <div class="day-label">Friday</div><div><input name="FridayStartTime" class="start-time" type="time"></div><div><input name="FridayEndTime" class="end-time" type="time"></div>    
-    <div class="day-label">Saturday</div><div><input name="SaturdayStartTime" class="start-time" type="time"></div><div><input name="SaturdayEndTime" class="end-time" type="time"></div>    
-    <div class="day-label">Sunday</div><div><input name="SundayStartTime" class="start-time" type="time"></div><div><input name="SundayEndTime" class="end-time" type="time"></div>
+    <div class="day-label">Monday</div><div><input value="06:00" name="MondayStartTime" class="start-time" type="time"></div><div><input value="16:30" name="MondayEndTime" class="end-time" type="time"></div>
+    <div class="day-label">Tuesday</div><div><input value="06:00" name="TuesdayStartTime" class="start-time" type="time"></div><div><input value="16:30" name="TuesdayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Wednesday</div><div><input value="06:00" name="WednesdayStartTime" class="start-time" type="time"></div><div><input value="16:30" name="WednesdayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Thurdsay</div><div><input value="06:00" name="ThurdsayStartTime" class="start-time" type="time"></div><div><input value="16:30" name="ThurdsayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Friday</div><div><input value="06:00" name="FridayStartTime" class="start-time" type="time"></div><div><input value="16:30" name="FridayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Saturday</div><div><input value="06:00" name="SaturdayStartTime" class="start-time" type="time"></div><div><input value="16:30" name="SaturdayEndTime" class="end-time" type="time"></div>    
+    <div class="day-label">Sunday</div><div><input value="06:00" name="SundayStartTime" class="start-time" type="time"></div><div><input value="16:30" name="SundayEndTime" class="end-time" type="time"></div>
   </div>
 
   <div class="form-row">
@@ -53,3 +53,9 @@
     <button>Cancel</button>
   </a>
 </div>
+
+<script>
+  
+document.getElementById(`engineer-phone-input`).addEventListener('input', test);
+
+</script>
