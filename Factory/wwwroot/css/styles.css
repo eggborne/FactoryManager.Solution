@@ -63,7 +63,7 @@ main {
 
 main.obscured {
 	opacity: 0;
-	translate: 2% 0;
+	translate: 1% 0;
 }
 
 header, footer {

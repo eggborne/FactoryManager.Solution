@@ -28,7 +28,7 @@
     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
-    @Html.LabelFor(model => model.PurchaseDate, "Date of purchase")
+    @Html.LabelFor(model => model.PurchaseDate, "Purchase date")
     @Html.TextBoxFor(model => model.PurchaseDate, new { @type = "date"})
     @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "error-message" })
   </div>

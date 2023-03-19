@@ -17,6 +17,8 @@ namespace Factory.Models
     [Required(ErrorMessage = "Description can't be empty!")]
     public string Description { get; set; }
 
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:MMMM d, yyyy}", ApplyFormatInEditMode = false)]
     [Required(ErrorMessage = "Date Of Purchase can't be empty!")]
     public DateTime PurchaseDate { get; set; }
     
