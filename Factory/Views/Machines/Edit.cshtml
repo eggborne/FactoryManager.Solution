@@ -30,6 +30,12 @@
     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
+    @Html.LabelFor(model => model.PurchaseDate, "Date of purchase")
+    @Html.EditorFor(model => model.PurchaseDate)
+    @* <input value=@Model.PurchaseDate type="date" name="PurchaseDate"> *@
+    @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "error-message" })
+  </div>
+  <div class="form-row">
     @Html.LabelFor(model => model.Status)
     <select name="Status">
       @if (Model.Status == "Operational") {

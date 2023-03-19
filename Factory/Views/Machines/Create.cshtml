@@ -27,6 +27,11 @@
     @Html.TextAreaFor(model => model.Description)
     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "error-message" })
   </div>
+  <div class="form-row">
+    @Html.LabelFor(model => model.PurchaseDate, "Date of purchase")
+    @Html.TextBoxFor(model => model.PurchaseDate, new { @type = "date"})
+    @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "error-message" })
+  </div>
   <button class="green" type="submit">Save</button>
 }
 

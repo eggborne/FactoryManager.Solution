@@ -38,6 +38,7 @@
 <div class="view-body details">
   <div>@Html.LabelFor(model => model.Manufacturer): @Html.DisplayFor(model => model.Manufacturer)</div>
   <div>@Html.LabelFor(model => model.Model, "Model name"): @Html.DisplayFor(model => model.Model)</div>
+  <div>@Html.LabelFor(model => model.PurchaseDate, "Date of purchase"): @DateOnly.FromDateTime(Model.PurchaseDate)</div>
   <div>@Html.LabelFor(model => model.Status, "Status"): @Html.DisplayFor(model => model.Status)</div>
   <div class="description-area">
     <div>@Html.DisplayFor(model => model.Description)</div>
