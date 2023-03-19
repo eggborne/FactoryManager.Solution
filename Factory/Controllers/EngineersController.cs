@@ -76,7 +76,7 @@ namespace Factory.Controllers
       {
         _db.Engineers.Update(engineer);
         _db.SaveChanges();
-        return RedirectToAction("Index");
+        return RedirectToAction(actionName: "Details", new { id= engineer.EngineerId });
       }
     }
 
