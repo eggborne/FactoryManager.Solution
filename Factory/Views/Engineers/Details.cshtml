@@ -46,6 +46,10 @@
         <div>@Html.DisplayFor(model => model.LastName)</div>
     </div>
     <div class="info-row">
+      @Html.LabelFor(model => model.Email, "Email")
+      <div>@Html.DisplayFor(model => model.Email)</div>
+    </div>
+    <div class="info-row">
       @Html.LabelFor(model => model.PhoneNumber, "Phone number")
       <div>@Html.DisplayFor(model => model.PhoneNumber)</div>
     </div>

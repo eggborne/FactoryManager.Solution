@@ -23,6 +23,11 @@
       @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
+    @Html.LabelFor(model => model.Email, "Email")
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "error-message" })
+  </div>
+  <div class="form-row">
     @Html.LabelFor(model => model.PhoneNumber, "Phone number")
     @Html.EditorFor(model => model.PhoneNumber)
     @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "error-message" })

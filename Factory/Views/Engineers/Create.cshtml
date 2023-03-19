@@ -22,6 +22,11 @@
       @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "error-message" })
   </div>
   <div class="form-row">
+      @Html.LabelFor(model => model.Email, "Email")
+      @Html.TextBoxFor(model => model.Email, new { placeholder = "toyo@norobi.dev" })
+      @Html.ValidationMessageFor(model => model.Email, "", new { @class = "error-message" })
+  </div>
+  <div class="form-row">
     @Html.LabelFor(model => model.PhoneNumber, "Phone number")
     @Html.TextBoxFor(model => model.PhoneNumber, new { placeholder = "(503)-867-5309", id = "engineer-phone-input" })
     @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "error-message" })
