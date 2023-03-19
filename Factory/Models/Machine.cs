@@ -16,6 +16,9 @@ namespace Factory.Models
     
     [Required(ErrorMessage = "Description can't be empty!")]
     public string Description { get; set; }
+    
+    [Required(ErrorMessage = "Status can't be empty!")]
+    public string Status { get; set; }
     public List<EngineerMachine> JoinEntities { get; }
   }
 }

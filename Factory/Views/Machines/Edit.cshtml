@@ -29,6 +29,20 @@
     <textarea name="Description">@Model.Description</textarea>
     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "error-message" })
   </div>
+  <div class="form-row">
+    @Html.LabelFor(model => model.Status)
+    <select name="Status">
+      @if (Model.Status == "Operational") {
+        <option selected value="Operational">Operational</option>
+        <option value="Malfunctioning">Malfunctioning</option>
+        
+      } else {
+        <option value="Operational">Operational</option>
+        <option selected value="Malfunctioning">Malfunctioning</option>
+      }
+      
+    </select>
+  </div>
   <button class="green" type="submit">Save</button>
 }
 

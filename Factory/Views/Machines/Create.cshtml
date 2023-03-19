@@ -11,6 +11,7 @@
 
 @using (Html.BeginForm(FormMethod.Post, new { @class = "edit-form" }))
 {
+  <input type="text" name="Status" value="Operational" hidden>
   <div class="form-row">
     @Html.LabelFor(model => model.Manufacturer)
     @Html.TextBoxFor(model => model.Manufacturer)
