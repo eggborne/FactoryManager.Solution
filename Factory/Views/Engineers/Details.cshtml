@@ -17,60 +17,54 @@
   </div>
 </div>
 
-<hr />
-
 <div class="view-body details">
+  <div class="info-area">
+    <div class="info-row">
+        @Html.LabelFor(model => model.FirstName, "First name")
+        <div>@Html.DisplayFor(model => model.FirstName)</div>
+    </div>
+    <div class="info-row">
+        @Html.LabelFor(model => model.LastName, "Last name")
+        <div>@Html.DisplayFor(model => model.LastName)</div>
+    </div>
+    <div class="info-row">
+      @Html.LabelFor(model => model.PhoneNumber, "Phone number")
+      <div>@Html.DisplayFor(model => model.PhoneNumber)</div>
+    </div>
+    <div class="info-row">
+      @Html.LabelFor(model => model.HourlyRate, "Hourly rate")
+      <div>$@Html.DisplayFor(model => model.HourlyRate, new { @type="number"})</div>
+    </div>
+  </div>
 
-<div class="info-area">
-  <div class="info-row">
-      @Html.LabelFor(model => model.FirstName, "First name")
-      <div>@Html.DisplayFor(model => model.FirstName)</div>
-  </div>
-  <div class="info-row">
-      @Html.LabelFor(model => model.LastName, "Last name")
-      <div>@Html.DisplayFor(model => model.LastName)</div>
-  </div>
-  <div class="info-row">
-    @Html.LabelFor(model => model.PhoneNumber, "Phone number")
-    <div>@Html.DisplayFor(model => model.PhoneNumber)</div>
-  </div>
-  <div class="info-row">
-    @Html.LabelFor(model => model.HourlyRate, "Hourly rate")
-    <div>$@Html.DisplayFor(model => model.HourlyRate, new { @type="number"})</div>
+  @if (@Model.JoinEntities.Count == 0)
+  {
+    <p>This engineer is not certified to repair any machines!</p>
+  }
+  else
+  {
+    <h3>Machine certifications:</h3>
+    <ul class="capsule-list machine-list">
+    @foreach (EngineerMachine join in Model.JoinEntities)
+      {
+        <li>@join.Machine.Manufacturer @join.Machine.Model
+          @using (Html.BeginForm("DeleteJoin", "Engineers"))
+          {
+            @Html.Hidden("joinId", @join.EngineerMachineId)
+            @Html.Hidden("engineerId", @Model.EngineerId)
+            <button class="red" type="submit">Revoke</button>
+          }
+        </li>
+      }
+    </ul>
+  }
+
+  <div class="button-area">
+    <a href='@Url.Action("AddMachine", new { id = Model.EngineerId })'>
+      <button class="green">Certify for new Machine</button>
+    </a>
   </div>
 </div>
-
-@if (@Model.JoinEntities.Count == 0)
-{
-  <p>This engineer is not certified to repair any machines!</p>
-}
-else
-{
-  <h3>Machine certifications:</h3>
-  <ul class="capsule-list machine-list">
-  @foreach (EngineerMachine join in Model.JoinEntities)
-    {
-      <li>@join.Machine.Manufacturer @join.Machine.Model
-        @using (Html.BeginForm("DeleteJoin", "Engineers"))
-        {
-          @Html.Hidden("joinId", @join.EngineerMachineId)
-          @Html.Hidden("engineerId", @Model.EngineerId)
-          <button class="red" type="submit">Revoke</button>
-        }
-      </li>
-    }
-  </ul>
-}
-
-<div class="button-area">
-  <a href='@Url.Action("AddMachine", new { id = Model.EngineerId })'>
-    <button class="green">Certify for new Machine</button>
-  </a>
-</div>
-
-</div>
-
-<hr />
 
 <p>
   <a href='@Url.Action("Index")'>

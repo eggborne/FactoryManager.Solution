@@ -17,47 +17,41 @@
   </div>
 </div>
 
-<hr />
-
 <div class="view-body details">
+  <div>@Html.LabelFor(model => model.Manufacturer): @Html.DisplayFor(model => model.Manufacturer)</div>
+  <div>@Html.LabelFor(model => model.Model, "Model name"): @Html.DisplayFor(model => model.Model)</div>
+  <div class="description-area">
+    <div>@Html.DisplayFor(model => model.Description)</div>
+  </div>
 
-<div>@Html.LabelFor(model => model.Manufacturer): @Html.DisplayFor(model => model.Manufacturer)</div>
-<div>@Html.LabelFor(model => model.Model, "Model name"): @Html.DisplayFor(model => model.Model)</div>
-<div class="description-area">
-  <div>@Html.DisplayFor(model => model.Description)</div>
+  @if (@Model.JoinEntities.Count == 0)
+  {
+    <div>There are no Engineers certified to repair this machine!</div>
+  }
+  else
+  {
+    <h3>Certified Engineers:</h3>
+    <ul class="capsule-list engineer-list">
+    @foreach (EngineerMachine join in Model.JoinEntities)
+      {
+        <li>@join.Engineer.FirstName<br />@join.Engineer.LastName
+          @using (Html.BeginForm("DeleteJoin", "Machines"))
+          {
+            @Html.Hidden("joinId", @join.EngineerMachineId)
+            @Html.Hidden("machineId", @Model.MachineId)
+            
+            <button class="red" type="submit">Uncertify</button>
+          }
+        </li>
+      }
+    </ul>
+  }
+  <div class="button-area">
+    <a href='@Url.Action("AddEngineer", new { id = Model.MachineId })'>
+      <button class="green">Certify new Engineer</button>
+    </a>
+  </div>
 </div>
-
-@if (@Model.JoinEntities.Count == 0)
-{
-  <div>There are no Engineers certified to repair this machine!</div>
-}
-else
-{
-  <h3>Certified Engineers:</h3>
-  <ul class="capsule-list engineer-list">
-  @foreach (EngineerMachine join in Model.JoinEntities)
-    {
-      <li>@join.Engineer.FirstName<br />@join.Engineer.LastName
-        @using (Html.BeginForm("DeleteJoin", "Machines"))
-        {
-          @Html.Hidden("joinId", @join.EngineerMachineId)
-          @Html.Hidden("machineId", @Model.MachineId)
-          
-          <button class="red" type="submit">Uncertify</button>
-        }
-      </li>
-    }
-  </ul>
-}
-<div class="button-area">
-  <a href='@Url.Action("AddEngineer", new { id = Model.MachineId })'>
-    <button class="green">Certify new Engineer</button>
-  </a>
-</div>
-
-</div>
-
-<hr />
 
 <p>
   <a href='@Url.Action("Index")'>
