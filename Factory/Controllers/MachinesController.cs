@@ -34,7 +34,7 @@ namespace Factory.Controllers
       {
         _db.Machines.Add(machine);
         _db.SaveChanges();
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index");
       }
     }
 
