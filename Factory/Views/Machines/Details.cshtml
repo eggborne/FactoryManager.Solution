@@ -10,14 +10,12 @@
     <span>Are you sure you want to delete</span>
     <span class="highlighted">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Model)?</span>
   </div>
-
   <div class="button-area">
     @using (Html.BeginForm("Delete", "Machines", new { id = @Model.MachineId }))
     {
       <button class="red" type="submit">Delete</button>
     }
   </div>
-
   <div class="button-area">
     <button onclick="hideModal('delete')">Cancel</button>
   </div>
@@ -36,22 +34,27 @@
 </div>
 
 <div class="view-body details">
-  <div>@Html.LabelFor(model => model.Manufacturer): @Html.DisplayFor(model => model.Manufacturer)</div>
-  <div>@Html.LabelFor(model => model.Model, "Model name"): @Html.DisplayFor(model => model.Model)</div>
-  <div>@Html.LabelFor(model => model.PurchaseDate, "Purchase date"): @Html.DisplayFor(model => model.PurchaseDate)</div>
-  <div>@Html.LabelFor(model => model.Status, "Status"): @Html.DisplayFor(model => model.Status)</div>
+  <h3>Specifications</h3>
+  <div class="specifications-area">
+    <div>@Html.LabelFor(model => model.Manufacturer): @Html.DisplayFor(model => model.Manufacturer)</div>
+    <div>@Html.LabelFor(model => model.Model, "Model name"): @Html.DisplayFor(model => model.Model)</div>
+    <div>@Html.LabelFor(model => model.PurchaseDate, "Purchase date"): @Html.DisplayFor(model => model.PurchaseDate)</div>
+    <div>@Html.LabelFor(model => model.Status, "Status"): @Html.DisplayFor(model => model.Status)</div>
+  </div>
+  
   <div class="description-area">
+    <h3>Description</h3>
     <div>@Html.DisplayFor(model => model.Description)</div>
   </div>
 
+  <h3>Certified Engineers</h3>
+  <ul class="capsule-list engineer-list">
   @if (@Model.CertificationPartners.Count == 0)
   {
     <p>There are no Engineers certified to repair this machine!</p>
   }
   else
   {
-    <h3>Certified Engineers:</h3>
-    <ul class="capsule-list engineer-list">
     @foreach (EngineerMachine join in Model.CertificationPartners)
       {
         <li>@join.Engineer.FirstName<br />@join.Engineer.LastName
@@ -64,8 +67,8 @@
           }
         </li>
       }
-    </ul>
   }
+  </ul>
   <div class="button-area">
     <a href='@Url.Action("AddEngineer", new { id = Model.MachineId })'>
       <button class="green">Certify new Engineer</button>
@@ -73,12 +76,12 @@
   </div>
 </div>
 
-<p>
+<div class="button-footer">
+  <hr />
   <a href='@Url.Action("Index")'>
     <button>Show Machine list</button>
   </a>
-  <br />&nbsp;<br />
   <a href='@Url.Action("Index", "Home")'>
     <button>Home</button>
   </a>
-</p>
+</div>

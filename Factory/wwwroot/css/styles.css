@@ -118,7 +118,6 @@ footer {
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-
 }
 
 .view-body.home {
@@ -366,7 +365,7 @@ button:active {
 	margin: 0;
 }
 
-.description-area, .info-area {
+.description-area > div, .info-area {
 	border: var(--small-border);
 	border-radius: 0.25rem;
 	padding: 1rem;
@@ -377,6 +376,23 @@ button:active {
 
 .description-area {
 	margin: 1rem 0;
+}
+
+.specifications-area {
+	display: flex;
+	flex-direction: column;
+}
+
+.specifications-area > div {
+	padding: 1rem;
+}
+
+.specifications-area > div:nth-child(odd) {
+	background-color: #00000011;
+}
+
+.specifications-area > div:nth-child(even) {
+	background-color: #00000022;
 }
 
 .info-area {
@@ -466,6 +482,10 @@ form {
 	/* justify-content: center; */
 }
 
+.home .capsule-list {
+	padding: 1.5rem 0 0 0;
+}
+
 .capsule-list li {
 	width: max-content;
 	min-height: 6rem;
@@ -481,9 +501,6 @@ form {
 .capsule-list li:hover {
 	scale: 1.05;
 	opacity: 1;
-}
-.capsule-list li:hover a {
-	text-shadow: var(--text-shadow);
 }
 
 .engineer-list {
