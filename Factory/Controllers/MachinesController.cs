@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Factory.Models;
-using System.Collections.Generic;
-using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -49,9 +47,9 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Machine thisMachine = _db.Machines
-          .Include(machine => machine.CertificationPartners)
-          .ThenInclude(join => join.Engineer)
-          .FirstOrDefault(machine => machine.MachineId == id);
+                            .Include(machine => machine.CertificationPartners)
+                            .ThenInclude(join => join.Engineer)
+                            .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
     }
 
@@ -60,9 +58,9 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       Machine thisMachine = _db.Machines
-            .Include(machine => machine.CertificationPartners)
-            .ThenInclude(join => join.Engineer)
-            .FirstOrDefault(machine => machine.MachineId == id);
+                            .Include(machine => machine.CertificationPartners)
+                            .ThenInclude(join => join.Engineer)
+                            .FirstOrDefault(machine => machine.MachineId == id);
       return View(thisMachine);
     }
 

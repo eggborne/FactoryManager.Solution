@@ -19,9 +19,14 @@ namespace Factory.Controllers
 
     // UTILITY
 
-    private Dictionary<string, Dictionary<string, string>> GetStartEndDictFromStringList(List<string> stringList) {
+    // probably only necessary because EngineerAvailableDay lists are handled code-side(?)
+    // I could not figure out how to use a Dictionary<string, Dictionary<string, string> as a firld type for 
+
+    List<string> dayNames = new List<string>{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    private Dictionary<string, Dictionary<string, string>> GetWeekStartEndDictFromStringList(List<string> stringList) {
+      // takes a list with 14 time strings: Mon start, Mon end, Tue start, Tue end, etc.
+      
       Dictionary<string, Dictionary<string, string>> availableDays = new Dictionary<string, Dictionary<string, string>>{ };
-      List<string> dayNames = new List<string>{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
       for (var i = 0; i < stringList.Count; i += 2) {
         availableDays.Add(key: dayNames[i / 2], value: new Dictionary<string, string> { { "StartTime", stringList[i] }, { "EndTime", stringList[(i + 1)] } });
       }
@@ -30,22 +35,32 @@ namespace Factory.Controllers
     }
 
     private void SaveAvailableDays(Engineer engineer, Dictionary<string, Dictionary<string, string>> availableDays) {
+      // adds EngineerAvailableDay objects to db from formatted Dictionary availableDays
+      // deletes existing if it already exists
+      // TODO: check if new and old are same
+
+      List<EngineerAvailableDay> daysToAdd = new List<EngineerAvailableDay>();
       foreach (var day in availableDays)
-        {
-          string dayOfWeek = day.Key;
-          DateTime startTime = DateTime.Parse(day.Value["StartTime"]);
-          DateTime endTime = DateTime.Parse(day.Value["EndTime"]);
-          EngineerAvailableDay newAvailableDay = new EngineerAvailableDay() { EngineerId = engineer.EngineerId, DayOfWeek = dayOfWeek, StartTime = startTime, EndTime = endTime }; 
-          #nullable enable
-          EngineerAvailableDay? existingDayData = _db.EngineerAvailableDays.FirstOrDefault(join => (join.EngineerId == engineer.EngineerId && join.DayOfWeek == dayOfWeek));
-          #nullable disable
-          if (existingDayData != null) {
-            _db.EngineerAvailableDays.Remove(existingDayData);
-            newAvailableDay.EngineerAvailableDayId = existingDayData.EngineerAvailableDayId;
-          }
-          _db.EngineerAvailableDays.Add(newAvailableDay);
+      {
+        EngineerAvailableDay newAvailableDay = new EngineerAvailableDay() 
+        { 
+          EngineerId = engineer.EngineerId, 
+          DayOfWeek = day.Key, 
+          StartTime = DateTime.Parse(day.Value["StartTime"]), 
+          EndTime = DateTime.Parse(day.Value["EndTime"])
+        }; 
+        #nullable enable
+        EngineerAvailableDay? existingDayData = _db.EngineerAvailableDays.FirstOrDefault(join => (join.EngineerId == engineer.EngineerId && join.DayOfWeek == day.Key));
+        #nullable disable
+        if (existingDayData != null) {
+          _db.EngineerAvailableDays.Remove(existingDayData);
+          newAvailableDay.EngineerAvailableDayId = existingDayData.EngineerAvailableDayId;
         }
-        _db.SaveChanges();
+        daysToAdd.Add(newAvailableDay);
+      }
+      
+      _db.EngineerAvailableDays.AddRange(daysToAdd);
+      _db.SaveChanges();
     }
 
     // CREATE
@@ -68,8 +83,7 @@ namespace Factory.Controllers
         _db.SaveChanges();
 
         List<string> dayStringList = new List<string>{ MondayStartTime, MondayEndTime, TuesdayStartTime, TuesdayEndTime, WednesdayStartTime, WednesdayEndTime, ThursdayStartTime, ThursdayEndTime, FridayStartTime, FridayEndTime, SaturdayStartTime, SaturdayEndTime, SundayStartTime, SundayEndTime };
-        Dictionary<string, Dictionary<string, string>> availableDays = GetStartEndDictFromStringList(dayStringList);
-        
+        Dictionary<string, Dictionary<string, string>> availableDays = GetWeekStartEndDictFromStringList(dayStringList);
         SaveAvailableDays(engineer, availableDays);
 
         return RedirectToAction("Index");
@@ -110,6 +124,9 @@ namespace Factory.Controllers
     {
       if (!ModelState.IsValid)
       {
+        // this works without db call but does not display error messages
+        // return RedirectToAction("Edit", engineer.EngineerId);
+
         Engineer thisEngineer = _db.Engineers
                                 .Include(engineer => engineer.CertificationPartners)
                                 .ThenInclude(join => join.Machine)
@@ -123,7 +140,7 @@ namespace Factory.Controllers
         _db.SaveChanges();
         
         List<string> dayStringList = new List<string>{ MondayStartTime, MondayEndTime, TuesdayStartTime, TuesdayEndTime, WednesdayStartTime, WednesdayEndTime, ThursdayStartTime, ThursdayEndTime, FridayStartTime, FridayEndTime, SaturdayStartTime, SaturdayEndTime, SundayStartTime, SundayEndTime };
-        Dictionary<string, Dictionary<string, string>> availableDays = GetStartEndDictFromStringList(dayStringList);
+        Dictionary<string, Dictionary<string, string>> availableDays = GetWeekStartEndDictFromStringList(dayStringList);
         SaveAvailableDays(engineer, availableDays);
         
         return RedirectToAction(actionName: "Details", new { id = engineer.EngineerId });

@@ -56,17 +56,17 @@
   else
   {
     @foreach (EngineerMachine join in Model.CertificationPartners)
-      {
-        <li>@join.Engineer.FirstName<br />@join.Engineer.LastName
-          @using (Html.BeginForm("DeleteJoin", "Machines"))
-          {
-            @Html.Hidden("joinId", @join.EngineerMachineId)
-            @Html.Hidden("machineId", @Model.MachineId)
-            
-            <button class="red" type="submit">Uncertify</button>
-          }
-        </li>
-      }
+    {
+      <li>@join.Engineer.FirstName<br />@join.Engineer.LastName
+        @using (Html.BeginForm("DeleteJoin", "Machines"))
+        {
+          @Html.Hidden("joinId", @join.EngineerMachineId)
+          @Html.Hidden("machineId", @Model.MachineId)
+          
+          <button class="red" type="submit">Uncertify</button>
+        }
+      </li>
+    }
   }
   </ul>
   <div class="button-area">
