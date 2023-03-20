@@ -33,7 +33,6 @@ namespace Factory.Controllers
       foreach (var day in availableDays)
         {
           string dayOfWeek = day.Key;
-          
           DateTime startTime = DateTime.Parse(day.Value["StartTime"]);
           DateTime endTime = DateTime.Parse(day.Value["EndTime"]);
           EngineerAvailableDay newAvailableDay = new EngineerAvailableDay() { EngineerId = engineer.EngineerId, DayOfWeek = dayOfWeek, StartTime = startTime, EndTime = endTime }; 
@@ -111,27 +110,20 @@ namespace Factory.Controllers
     {
       if (!ModelState.IsValid)
       {
-          return View(engineer);
+        Engineer thisEngineer = _db.Engineers
+                                .Include(engineer => engineer.CertificationPartners)
+                                .ThenInclude(join => join.Machine)
+                                .Include(engineer => engineer.AvailableDays)
+                                .FirstOrDefault(engineer => engineer.EngineerId == engineer.EngineerId);
+        return View(thisEngineer);
       }
       else
       {
         _db.Engineers.Update(engineer);
         _db.SaveChanges();
-
-        // Dictionary<string, Dictionary<string, string>> availableDays = new Dictionary<string, Dictionary<string, string>>{ 
-        //   { "Monday", new Dictionary<string, string> { { "StartTime", MondayStartTime }, { "EndTime", MondayEndTime } } },
-        //   { "Tuesday", new Dictionary<string, string> { { "StartTime", TuesdayStartTime }, { "EndTime", TuesdayEndTime } } },
-        //   { "Wednesday", new Dictionary<string, string> { { "StartTime", WednesdayStartTime }, { "EndTime", WednesdayEndTime } } },
-        //   { "Thursday", new Dictionary<string, string> { { "StartTime", ThursdayStartTime }, { "EndTime", ThursdayEndTime } } },
-        //   { "Friday", new Dictionary<string, string> { { "StartTime", FridayStartTime }, { "EndTime", FridayEndTime } } },
-        //   { "Saturday", new Dictionary<string, string> { { "StartTime", SaturdayStartTime }, { "EndTime", SaturdayEndTime } } },
-        //   { "Sunday", new Dictionary<string, string> { { "StartTime", SundayStartTime }, { "EndTime", SundayEndTime } } }
-        // };
         
         List<string> dayStringList = new List<string>{ MondayStartTime, MondayEndTime, TuesdayStartTime, TuesdayEndTime, WednesdayStartTime, WednesdayEndTime, ThursdayStartTime, ThursdayEndTime, FridayStartTime, FridayEndTime, SaturdayStartTime, SaturdayEndTime, SundayStartTime, SundayEndTime };
-        
         Dictionary<string, Dictionary<string, string>> availableDays = GetStartEndDictFromStringList(dayStringList);
-        
         SaveAvailableDays(engineer, availableDays);
         
         return RedirectToAction(actionName: "Details", new { id = engineer.EngineerId });

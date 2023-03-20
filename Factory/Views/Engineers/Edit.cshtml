@@ -29,7 +29,8 @@
   </div>
   <div class="form-row">
     @Html.LabelFor(model => model.PhoneNumber, "Phone number")
-    @Html.EditorFor(model => model.PhoneNumber)
+    @Html.EditorFor(model => model.PhoneNumber, 
+                new { htmlAttributes = new { @id = "engineer-phone-edit-input" } })
     @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "error-message" })
   </div>
 
@@ -58,3 +59,7 @@
     <button>Cancel</button>
   </a>
 </div>
+
+<script>
+  document.getElementById(`engineer-phone-edit-input`).addEventListener('input', formatPhoneNumber);
+</script>

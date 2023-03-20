@@ -14,7 +14,8 @@ window.addEventListener('load', async () => {
 
 function showModal(type) {
   document.body.classList.add('veiled');
-  document.getElementById(`${type}-modal`).classList.remove('obscured');
+  let modalElement = document.getElementById(`${type}-modal`);
+  modalElement.classList.remove('obscured');
 }
 
 function hideModal(type) {
@@ -22,22 +23,27 @@ function hideModal(type) {
   document.getElementById(`${type}-modal`).classList.add('obscured');
 }
 
-function test(e) {
+
+
+function formatPhoneNumber(e) { // cannot backspace to delete right parenthesis
   let currentValue = e.target.value;
+
+  // remove any current formatting
   currentValue = currentValue.replaceAll('(', '');
   currentValue = currentValue.replaceAll(')', '');
   currentValue = currentValue.replaceAll('-', '');
   currentValue = currentValue.replaceAll(' ', '');
 
-  let newValue;
-
-  if (currentValue.length <= 3) {
+  // format again
+  let newValue = currentValue;
+  if (currentValue.length < 3) {
+    // add nothing
+  } else if (currentValue.length === 3) {
     newValue = `(${currentValue})`;
   } else if (currentValue.length <= 6) {
     newValue = `(${currentValue.substr(0, 3)}) ${currentValue.substr(3, currentValue.length)}`;
   } else {
     newValue = `(${currentValue.substr(0, 3)}) ${currentValue.substr(3, 3)}-${currentValue.substr(6, 4)}`;
   }
-
   e.target.value = newValue;
 }
