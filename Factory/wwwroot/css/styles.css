@@ -508,6 +508,7 @@ button:active {
 	width: var(--grid-width);
 	align-self: center;
 	margin-bottom: 2rem;
+	border: var(--small-border);
 }
 
 .week-display-grid {
@@ -560,7 +561,7 @@ button:active {
 	/* border: var(--small-border);  */
 }
 .day-row:first-of-type {
-	border: var(--small-border); 
+	border-bottom: var(--small-border);
 }
 
 .day-row > div {
