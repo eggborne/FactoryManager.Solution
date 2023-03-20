@@ -58,14 +58,31 @@
     </div>
   </div>
 
-  <div class="available-days-grid">
-    <h3>Availablity</h3>
-    <div class="day-row labels"><div>Day</div><div>Start Time</div><div>End Time</div></div>
-    @foreach (var day in Model.AvailableDays) {
-      <div class="day-row">
-        <div>@day.DayOfWeek</div><div>@TimeOnly.FromDateTime(day.StartTime)</div><div>@TimeOnly.FromDateTime(day.EndTime)</div>
+  <h3>Availablity</h3>
+  <div class="week-display">
+    <div class="available-days-grid">
+      <div class="day-row labels"><div>Day</div><div>Start Time</div><div>End Time</div></div>
+      @foreach (var day in Model.AvailableDays) {
+        <div class="day-row">
+          <div>@day.DayOfWeek</div><div>@TimeOnly.FromDateTime(day.StartTime)</div><div>@TimeOnly.FromDateTime(day.EndTime)</div>
+        </div>
+      }
+    </div>
+    
+    <div class="week-display-grid">
+      <div class="day-graph-row header">
+        @for (var h = 1; h <= 24; h++) {
+          <div class="day-graph-cell">@(h <= 12 ? ($"{h}") : ($"{h - 12}"))<br />@(h < 12 ? "AM" : "PM")</div>
+        }
       </div>
-    }
+      @for (var d = 0; d < 7; d++) {
+        <div class="day-graph-row">
+          @for (var h = 1; h <= 24; h++) {
+            <div class='@($"day-graph-cell")'></div>
+          }
+        </div>
+      }
+    </div>
   </div>
 
   <h3>Machine Certifications</h3>

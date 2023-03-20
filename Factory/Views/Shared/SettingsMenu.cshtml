@@ -1,0 +1,28 @@
+<div id="settings-menu">
+  <div class="menu-row">
+    <label for="theme-select">Theme</label>
+    <select name="theme-select" id="theme-select">
+      <option id="light-theme">Light</option>
+      <option id="dark-theme">Dark</option>
+    </select>
+  </div>
+  <div class="menu-row">
+    <label for="transition-select">Transition</label>
+    <select name="transition-select">
+      <option id="slide">Slide Left</option>
+      <option id="slide">Slide Up</option>
+      <option id="zoom">Zoom</option>
+    </select>
+  </div>
+</div>
+
+<script>
+  document.getElementById("theme-select").addEventListener("change", e => {
+    console.log(e.target.value);
+    if (e.target.value === "Light") {
+      document.body.classList.replace("dark-theme", "light-theme");
+    } else {
+      document.body.classList.replace("light-theme", "dark-theme");
+    }
+  });
+</script>
