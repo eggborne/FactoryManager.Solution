@@ -36,6 +36,7 @@
 </div>
 
 <div class="view-body details">
+  <h3>Personal info</h3>
   <div class="info-area">
     <div class="info-row">
         @Html.LabelFor(model => model.FirstName, "First name")
@@ -59,14 +60,24 @@
     </div>
   </div>
 
+  <div class="available-days-grid">
+    <h3>Availablity</h3>
+    <div class="day-row labels"><div>Day</div><div>Start Time</div><div>End Time</div></div>
+    @foreach (var day in Model.AvailableDays) {
+      <div class="day-row">
+        <div>@day.DayOfWeek</div><div>@TimeOnly.FromDateTime(day.StartTime)</div><div>@TimeOnly.FromDateTime(day.EndTime)</div>
+      </div>
+    }
+  </div>
+
+  <h3>Machine Certifications</h3>
+  <ul class="capsule-list machine-list">
   @if (@Model.CertificationPartners.Count == 0)
   {
     <p>This engineer is not certified to repair any machines!</p>
   }
   else
   {
-    <h3>Machine certifications:</h3>
-    <ul class="capsule-list machine-list">
     @foreach (EngineerMachine join in Model.CertificationPartners)
       {
         <li>@join.Machine.Manufacturer @join.Machine.Model
@@ -78,8 +89,8 @@
           }
         </li>
       }
-    </ul>
   }
+  </ul>
 
   <div class="button-area">
     <a href='@Url.Action("AddMachine", new { id = Model.EngineerId })'>
@@ -88,12 +99,12 @@
   </div>
 </div>
 
-<p>
+<div class="button-footer">
+  <hr />
   <a href='@Url.Action("Index")'>
     <button>Show Engineer List</button>
   </a>
-  <br />&nbsp;<br />
   <a href='@Url.Action("Index", "Home")'>
     <button>Home</button>
   </a>
-</p>
+</div>

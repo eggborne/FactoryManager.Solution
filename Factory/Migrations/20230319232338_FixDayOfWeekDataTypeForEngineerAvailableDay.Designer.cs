@@ -3,6 +3,7 @@ using System;
 using Factory.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Factory.Migrations
 {
     [DbContext(typeof(FactoryContext))]
-    partial class FactoryContextModelSnapshot : ModelSnapshot
+    [Migration("20230319232338_FixDayOfWeekDataTypeForEngineerAvailableDay")]
+    partial class FixDayOfWeekDataTypeForEngineerAvailableDay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,11 +131,13 @@ namespace Factory.Migrations
 
             modelBuilder.Entity("Factory.Models.EngineerAvailableDay", b =>
                 {
-                    b.HasOne("Factory.Models.Engineer", null)
+                    b.HasOne("Factory.Models.Engineer", "Engineer")
                         .WithMany("AvailableDays")
                         .HasForeignKey("EngineerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Engineer");
                 });
 
             modelBuilder.Entity("Factory.Models.EngineerMachine", b =>
